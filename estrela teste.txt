@@ -1,0 +1,29 @@
+function powerup() {
+    numeroAleatorio = Math.round(Math.random())
+    switch (numeroAleatorio) {
+        // powerup estrela
+        case 0:
+            contadorMoeda = 0
+            root.style.setProperty('--velocidade', `${0.5}s`)
+            setTimeout(() => {
+                root.style.setProperty('--velocidade', `${5}s`)
+                setTimeout(() => {
+                    root.style.setProperty('--velocidade', `${2}s`)
+                }, 1000);
+            }, 4500);
+            BuffInvulnerabilidade()
+
+
+        case 1:
+            contadorMoeda = 0
+
+
+        case 2:
+            contadorMoeda = 0
+
+
+        case 3:
+            contadorMoeda = 0
+
+    }
+}
