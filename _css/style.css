@@ -73,7 +73,7 @@ body {
     position: absolute;
     bottom: 0;
     /* Alinha na parte inferior */
-    width: 80px;
+    width: 150px;
     animation: pipe-animation var(--velocidade) infinite linear;
     /* Animação de movimento */
     animation-play-state: paused;
@@ -97,7 +97,7 @@ body {
 }
 
 .mario {
-    width: 150px;
+    width: 250px;
     position: absolute;
     bottom: 0;
     /* No chão */
@@ -745,219 +745,6 @@ body {
         right: -100px;
     }
 
-    to {
-        right: 100%;
-    }
-}
-
-#marioDiv {
-    transition: 0.35s;
-}
-
-#marioDiv:hover {
-    border-color: red;
-    transition: 0.35s;
-    box-shadow: 0px 0px 21px red;
-    background-image: url(/_imagens/hoover/mariofundo.jpg);
-    background-size: 100px;
-    background-position: bottom;
-    transform: scale(1.25);
-}
-
-#sonicDiv {
-    transition: 0.35s;
-}
-
-#sonicDiv:hover {
-    border-color: rgb(73, 158, 255);
-    transition: 0.35s;
-    box-shadow: 0px 0px 21px rgb(73, 158, 255);
-    background-image: url(/_imagens/hoover/sonicfundo.jpg);
-    background-size: cover;
-    background-position: bottom;
-    transform: scale(1.25);
-}
-
-#dexterDiv {
-    transition: 0.35s;
-}
-
-#dexterDiv:hover {
-    border-color: rgb(255, 113, 19);
-    transition: 0.35s;
-    box-shadow: 0px 0px 21px rgb(255, 113, 19);
-    background-image: url(/_imagens/hoover/dexterfundo.jpg);
-    background-size: cover;
-    background-position: bottom;
-    transform: scale(1.25);
-}
-
-#florzinhaDiv {
-    transition: 0.35s;
-}
-
-#florzinhaDiv:hover {
-    border-color: rgb(255, 28, 255);
-    transition: 0.35s;
-    box-shadow: 0px 0px 21px rgb(255, 28, 255);
-    background-image: url(/_imagens/hoover/florzinhafundo.jpg);
-    background-size: cover;
-    background-position: bottom;
-    transform: scale(1.25);
-}
-
-#ossoDiv {
-    transition: 0.35s;
-}
-
-#ossoDiv:hover {
-    border-color: rgb(63, 11, 94);
-    transition: 0.35s;
-    box-shadow: 0px 0px 21px rgb(63, 11, 94);
-    background-image: url(/_imagens/hoover/ossofundo.jpg);
-    background-size: cover;
-    background-position: bottom;
-    transform: scale(1.25);
-}
-
-#tailsDiv {
-    transition: 0.35s;
-}
-
-#tailsDiv:hover {
-    border-color: rgb(255, 136, 0);
-    transition: 0.35s;
-    box-shadow: 0px 0px 21px rgb(255, 136, 0);
-    background-image: url(/_imagens/hoover/tailsfundo.jpg);
-    background-size: cover;
-    background-position: bottom;
-    transform: scale(1.25);
-}
-
-#shadowDiv {
-    transition: 0.35s;
-}
-
-#shadowDiv:hover {
-    border-color: rgb(129, 0, 22);
-    transition: 0.35s;
-    box-shadow: 0px 0px 21px rgb(129, 0, 22);
-    background-image: url(/_imagens/hoover/shadowfundo.jpg);
-    background-size: cover;
-    background-position: bottom;
-    transform: scale(1.25);
-}
-
-#bmoDiv {
-    transition: 0.35s;
-}
-
-#bmoDiv:hover {
-    border-color: rgb(76, 245, 180);
-    transition: 0.35s;
-    box-shadow: 0px 0px 21px rgb(76, 245, 180);
-    background-image: url(/_imagens/hoover/aventurafundo.jpg);
-    background-size: cover;
-    background-position: bottom;
-    transform: scale(1.25);
-}
-
-#finnDiv {
-    transition: 0.35s;
-}
-
-#finnDiv:hover {
-    border-color: rgb(76, 245, 180);
-    transition: 0.35s;
-    box-shadow: 0px 0px 21px rgb(30, 114, 139);
-    background-image: url(/_imagens/hoover/finn.jpg);
-    background-size: cover;
-    background-position: bottom;
-    transform: scale(1.25);
-}
-
-#ben10Div {
-    transition: 0.35s;
-}
-
-#ben10Div:hover {
-    border-color: rgb(24, 255, 44);
-    transition: 0.35s;
-    box-shadow: 0px 0px 21px rgb(24, 255, 44);
-    background-image: url(/_imagens/hoover/ben10fundo.png);
-    background-size: cover;
-    background-position: bottom;
-    transform: scale(1.25);
-}
-
-#mordecaiDiv:hover {
-    border-color: rgb(36, 15, 218);
-    transition: 0.35s;
-    box-shadow: 0px 0px 21px rgb(62, 65, 253);
-    background-image: url(/_imagens/hoover/mordecaifundo.jpg);
-    background-size: cover;
-    background-position: bottom;
-    transform: scale(1.25);
-}
-
-#mordecaiDiv {
-    transition: 0.35s;
-}
-
-#rexDiv:hover {
-    border-color: rgb(143, 61, 7);
-    transition: 0.35s;
-    box-shadow: 0px 0px 21px rgb(230, 127, 44);
-    background-image: url(/_imagens/hoover/Fundorex.png);
-    background-size: cover;
-    background-position: bottom;
-    transform: scale(1.25);
-}
-
-#rexDiv {
-    transition: 0.35s;
-}
-
-#lindinhaDiv {
-    transition: 0.35s;
-}
-
-#lindinhaDiv:hover {
-    border-color: rgb(24, 255, 224);
-    transition: 0.35s;
-    box-shadow: 0px 0px 21px rgb(24, 255, 224);
-    background-image: url(/_imagens/hoover/lindinhafundo.png);
-    background-size: cover;
-    background-position: bottom;
-    transform: scale(1.25);
-}
-
-#docinhoDiv:hover {
-    border-color: rgb(21, 90, 27);
-    transition: 0.35s;
-    box-shadow: 0px 0px 21px rgb(7, 63, 5);
-    background-image: url(/_imagens/hoover/docinhoFundo.png);
-    background-size: cover;
-    background-position: bottom;
-    transform: scale(1.25);
-}
-
-#docinhoDiv {
-    transition: 0.35s;
-}
-
-#luigiDiv:hover {
-    border-color: rgb(167, 250, 99);
-    transition: 0.35s;
-    box-shadow: 0px 0px 21px rgb(7, 63, 5);
-    background-image: url(/_imagens/hoover/fundoLuigi.png);
-    background-size: cover;
-    background-position: bottom;
-    transform: scale(1.25);
-}
-
-#luigiDiv {
-    transition: 0.35s;
 }
 
 .cenario {
@@ -970,6 +757,9 @@ body {
     bottom: 0;
     position: absolute;
     display: block;
+    width: 100%;
+    height: 8vh;
+    object-fit: cover;
 }
 
 .animacao-estrela {
@@ -1106,4 +896,67 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 2500;
+}
+/* Estilo do botão Pular Arcade */
+#jump-button-mobile {
+    display: none;
+    position: absolute;
+    bottom: 10vh;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #f7d51d;
+    color: #e15f00;
+    font-family: var(--fonte);
+    font-size: 0.8rem;
+    border: 4px solid #e15f00;
+    box-shadow: 0 5px 0 #b34a00, inset 0 3px 5px rgba(255,255,255,0.5);
+    z-index: 100;
+    text-shadow: 1px 1px 0px white;
+    cursor: pointer;
+    outline: none;
+}
+#jump-button-mobile:active {
+    transform: translateY(5px);
+    box-shadow: none;
+}
+
+/* Responsividade para Mobile */
+@media (max-width: 768px) {
+    .mario {
+        width: 100px;
+    }
+    .pipe {
+        width: 60px;
+    }
+    .tela-Inicial h1 {
+        font-size: 1.2rem;
+    }
+    .tela-Inicial label {
+        font-size: 1rem;
+    }
+    .tela-Inicial input {
+        width: 80%;
+        font-size: 1rem;
+    }
+    .senai img {
+        width: 250px;
+    }
+    #start-button, #rank-button, #perso-button {
+        width: 200px;
+        height: 60px;
+        font-size: 1rem;
+    }
+    .game-over-screen h2 {
+        font-size: 2rem;
+    }
+    #escolha-Personagem {
+        width: 95%;
+        height: auto;
+        padding-bottom: 20px;
+    }
+    #jump-button-mobile {
+        display: block;
+    }
 }
