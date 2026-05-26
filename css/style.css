@@ -1,0 +1,583 @@
+/* ==========================================================================
+   VARIÁVEIS GLOBAIS DO CSS
+   ==========================================================================
+   Aqui a gente define algumas variáveis para usar no projeto todo, como a fonte
+   arcade e a velocidade básica das animações.
+*/
+:root {
+    --fonte: "Press Start 2P", system-ui; /* Fonte clássica de videogame */
+    --velocidade: 3s; /* Tempo padrão para a cancela cruzar a tela */
+}
+
+/* ==========================================================================
+   RESET E ESTILOS GLOBAIS
+   ==========================================================================
+   Limpando as margens e paddings padrão que o navegador coloca sozinho.
+*/
+body {
+    background-color: rgb(150, 84, 8); /* Cor de fundo marrom/laranja fora da tela do jogo */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Borda e padding não aumentam o tamanho do elemento */
+}
+
+/* Classe utilitária para aplicar a fonte do jogo */
+.press-start-2p-regular {
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* ==========================================================================
+   ÁREA DO JOGO (GAME BOARD)
+   ==========================================================================
+   Onde a mágica acontece. Tem a altura da tela e o céu azul em degradê.
+*/
+.game-board {
+    width: 100%;
+    height: 92vh; /* Ocupa quase toda a altura da tela */
+    border-bottom: 1px solid black;
+    margin: 0 auto;
+    position: relative; /* Necessário para posicionar os elementos dentro dele */
+    overflow: hidden; /* Esconde o que sai dos limites da tela */
+    background: linear-gradient(#87ceeb, #e0f6ff); /* Céu bonito em degradê */
+}
+
+/* ==========================================================================
+   ELEMENTOS DE JOGABILIDADE (PERSONAGEM E OBSTÁCULOS)
+   ==========================================================================
+*/
+
+/* A cancela que o jogador tem que pular */
+.pipe {
+    position: absolute;
+    bottom: 0;
+    width: 150px;
+    animation: pipe-animation var(--velocidade) infinite linear;
+    animation-play-state: paused; /* Começa parada até o start */
+    z-index: 1;
+}
+
+/* O míssil que vem voando (atualmente desativado na lógica, mas com estilo pronto) */
+.bullet {
+    position: absolute;
+    bottom: 20px;
+    width: 80px;
+    animation: bullet-animation 1.5s infinite linear;
+    animation-play-state: paused;
+    display: none;
+}
+
+/* A nossa querida empilhadeira */
+.mario {
+    width: 250px;
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    animation: none;
+}
+
+/* Classe de pulo ativada via JavaScript */
+.jump {
+    animation: jump-animation 700ms ease-in-out;
+}
+
+/* Nuvens decorativas no céu */
+.clouds {
+    position: absolute;
+    width: 370px;
+    animation: clouds-animation 10s infinite linear;
+    z-index: 1;
+}
+
+/* ==========================================================================
+   HUD - PLACAR E VIDAS
+   ==========================================================================
+*/
+.score-container {
+    font-family: "Press Start 2P", system-ui;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra preta nas letras */
+    z-index: 10;
+    display: flex;
+    gap: 20px;
+}
+
+#lives-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.life-icon {
+    width: 30px;
+    height: 30px;
+}
+
+/* ==========================================================================
+   TELAS DE INTERFACE (MENU, GAME OVER E REINICIAR)
+   ==========================================================================
+*/
+
+/* Tela de Game Over final */
+.game-over-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.75); /* Fundo escuro transparente */
+    color: white;
+    font-family: var(--fonte);
+    z-index: 20;
+    display: none;
+}
+
+.game-over-screen h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #F8333C;
+    text-shadow: 3px 3px 0px black;
+}
+
+.game-over-screen p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+/* Tela de continuar após perder uma vida */
+.tela-jogar-denovo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-family: var(--fonte);
+    z-index: 20;
+    display: none;
+}
+
+.tela-jogar-denovo h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #F8333C;
+    text-shadow: 3px 3px 0px black;
+}
+
+.tela-jogar-denovo p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+/* Botões da tela de continuar */
+.tela-jogar-denovo button {
+    padding: 15px 30px;
+    font-size: 1rem;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: var(--fonte);
+    margin-right: 5px;
+    transition: all 0.1s ease-in-out;
+}
+
+#restart-button {
+    padding: 15px 30px;
+    font-size: 1rem;
+    color: white;
+    background-color: #44AF69;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: var(--fonte);
+    transition: all 0.1s ease-in-out;
+}
+
+#restart-button:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+/* Caixa com os botões de continuar ou reiniciar de vez */
+#Continuar-Reniciar {
+    font-size: 1.2rem;
+    margin-top: 25px;
+    background-color: #333;
+    color: white;
+    font-family: var(--fonte);
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+}
+
+/* Tela inicial onde digita o Nick */
+.tela-Inicial {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-family: var(--fonte);
+    z-index: 30;
+    text-align: center;
+}
+
+.tela-Inicial h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #f7d51d;
+    text-shadow: 3px 3px 0px #e15f00;
+}
+
+.tela-Inicial label {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.tela-Inicial input {
+    padding: 10px;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    border: 3px solid white;
+    background-color: #333;
+    color: white;
+    font-family: var(--fonte);
+    text-align: center;
+    border-radius: 10px;
+}
+
+#nickname {
+    border-radius: 10px;
+}
+
+/* O botão Start do menu inicial */
+#start-button {
+    font-size: 1.2rem;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 7px 0px rgb(109, 107, 107);
+    text-shadow: 3px 2px 0px black;
+    border: 3px solid rgb(44, 44, 44);
+    outline: 3px solid rgb(177, 175, 175);
+    width: 300px;
+    height: 80px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.25s linear;
+    font-family: var(--fonte);
+    background-color: #12a019;
+    margin-bottom: 90px;
+}
+
+#start-button:hover {
+    background-color: #32c925;
+    transform: scale(1.05);
+}
+
+#start-button:active {
+    background-color: #0d7012;
+    transform: scale(0.98);
+}
+
+/* Começa a animação do cano ao iniciar */
+.game-started .pipe {
+    animation-play-state: running;
+}
+
+/* Faz o boneco piscar quando bate e fica invulnerável temporariamente */
+.mario.invuneravel {
+    animation: piscar 0.2s infinite alternate;
+}
+
+/* Estilo da moedinha que aparece no céu */
+.coin {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    z-index: 15;
+    animation: pipe-animation var(--velocidade) infinite linear;
+}
+
+/* ==========================================================================
+   TELA DE ABERTURA (STARTUP SCREEN)
+   ==========================================================================
+*/
+#passioneScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
+
+#passioneScreen.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#startup-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* ==========================================================================
+   ANIMAÇÕES CSS (KEYFRAMES)
+   ==========================================================================
+*/
+
+/* Movimento da cancela da direita para a esquerda */
+@keyframes pipe-animation {
+    from {
+        right: -160px;
+    }
+    to {
+        right: 100%;
+    }
+}
+
+/* Movimento do míssil */
+@keyframes bullet-animation {
+    from {
+        right: -80px;
+    }
+    to {
+        right: 100%;
+    }
+}
+
+/* Parábola do pulo da empilhadeira */
+@keyframes jump-animation {
+    0% {
+        bottom: 0;
+    }
+    40% {
+        bottom: 180px;
+    }
+    50% {
+        bottom: 180px;
+    }
+    70% {
+        bottom: 130px;
+    }
+    100% {
+        bottom: 0;
+    }
+}
+
+/* Movimento das nuvens */
+@keyframes clouds-animation {
+    from {
+        right: -550px;
+    }
+    to {
+        right: 100%;
+    }
+}
+
+/* Piscar da invulnerabilidade */
+@keyframes piscar {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.3;
+    }
+}
+
+/* Efeito rotacionar do logo do SENAI */
+.senai {
+    animation: senai-rotacionar 3s linear infinite;
+}
+
+@keyframes senai-rotacionar {
+    0% {
+        transform: rotate(0deg);
+        scale: 1;
+    }
+    25% {
+        transform: rotate(20deg);
+        scale: 2;
+    }
+    50% {
+        transform: rotate(0deg);
+        scale: 1;
+    }
+    75% {
+        transform: rotate(-20deg);
+        scale: 2;
+    }
+    100% {
+        transform: rotate(0deg);
+        scale: 1;
+    }
+}
+
+/* Cenário de chão na parte inferior */
+.cenario {
+    width: 100%;
+}
+
+#img1 {
+    opacity: 100%;
+    bottom: 0;
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 8vh;
+    object-fit: cover;
+}
+
+/* Animação de quando a estrela brilha (efeito de arco-íris/saturação) */
+.animacao-estrela {
+    animation: piscar-estrela 1s linear infinite;
+}
+
+@keyframes piscar-estrela {
+    0% {
+        filter: saturate(0);
+    }
+    20% {
+        filter: saturate(5);
+    }
+    40% {
+        filter: saturate(10);
+    }
+    60% {
+        filter: saturate(5);
+    }
+    100% {
+        filter: saturate(0);
+    }
+}
+
+/* Movimento da imagem de fundo */
+.fundo-gif {
+    bottom: 0;
+    position: absolute;
+    animation: mexer-fundo 15s linear infinite;
+    z-index: -0;
+    width: 80%;
+    display: none;
+}
+
+@keyframes mexer-fundo {
+    from {
+        right: -2000px;
+    }
+    to {
+        right: 100%;
+    }
+}
+
+/* Filtro de linhas pretas retrô (scanline) */
+.scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    opacity: 0.1;
+}
+
+/* ==========================================================================
+   CONTROLES MOBILE
+   ==========================================================================
+*/
+
+/* O botão vermelho arcade de pular no mobile */
+#jump-button-mobile {
+    display: none;
+    position: absolute;
+    bottom: 10vh;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #f7d51d;
+    color: #e15f00;
+    font-family: var(--fonte);
+    font-size: 0.8rem;
+    border: 4px solid #e15f00;
+    box-shadow: 0 5px 0 #b34a00, inset 0 3px 5px rgba(255,255,255,0.5);
+    z-index: 100;
+    text-shadow: 1px 1px 0px white;
+    cursor: pointer;
+    outline: none;
+}
+
+#jump-button-mobile:active {
+    transform: translateY(5px);
+    box-shadow: none;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (TELA MENOR / CELULARES)
+   ==========================================================================
+*/
+@media (max-width: 768px) {
+    .mario {
+        width: 100px; /* Diminui a empilhadeira para dar mais visão do obstáculo */
+    }
+    .pipe {
+        width: 60px; /* Diminui a cancela */
+    }
+    .tela-Inicial h1 {
+        font-size: 1.2rem;
+    }
+    .tela-Inicial label {
+        font-size: 1rem;
+    }
+    .tela-Inicial input {
+        width: 80%;
+        font-size: 1rem;
+    }
+    .senai img {
+        width: 250px;
+    }
+    #start-button {
+        width: 200px;
+        height: 60px;
+        font-size: 1rem;
+    }
+    .game-over-screen h2 {
+        font-size: 2rem;
+    }
+    #jump-button-mobile {
+        display: block; /* Mostra o botão de pulo somente no mobile */
+    }
+}

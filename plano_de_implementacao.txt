@@ -1,0 +1,70 @@
+PLANO DE IMPLEMENTACAO - CORRECAO DE COLISOES E LAYOUT MOBILE (CANCELA GAME)
+
+Este plano descreve como arrumar as colisoes que estao quebrando no celular e melhorar a velocidade dos obstaculos para dar tempo do jogador reagir.
+
+==========================================================================
+1. O PROBLEMA (POR QUE ESTA QUEBRADO?)
+==========================================================================
+* Colisoes Invisiveis no Mobile:
+  No JavaScript, a colisao esta travada em valores fixos (ex: pipePosition <= 120).
+  Como no celular a empilhadeira fica menor (apenas 100px de largura em vez de 250px),
+  o jogo registra que voce bateu mesmo quando a cancela ainda esta longe do boneco!
+
+* Sem tempo de Reacao (Muito proximo):
+  A tela do celular e mais estreita que a do computador. Como a duracao da animacao
+  e a mesma (2 segundos), a cancela atravessa a tela pequena muito mais rapido
+  para o olho humano, dando quase zero tempo para o jogador apertar o pulo.
+
+==========================================================================
+2. A SOLUCAO PROPOSTA
+==========================================================================
+* Colisao Inteligente (getBoundingClientRect):
+  Vamos remover os numeros fixos em pixels do codigo JavaScript e usar uma funcao 
+  que pega a posicao real (retangulo) dos elementos na tela a cada instante.
+  Isso funciona em qualquer celular, tablet ou computador automaticamente!
+
+* Velocidade Ajustada para Celular:
+  No inicio do jogo, o script vai checar se a tela e de celular. Se for,
+  a cancela comeca em 3.0 segundos (mais lenta) em vez de 2.0 segundos,
+  garantindo que o jogador consiga ver o obstaculo vindo e consiga pular a tempo.
+
+==========================================================================
+3. COMO ALTERAR O CODIGO (EXEMPLO PRATICO)
+==========================================================================
+
+No arquivo "js/script.js":
+
+Substituiremos a verificacao de colisao por uma funcao parecida com esta:
+
+// Funcao simples para checar se a empilhadeira encostou em qualquer obstaculo
+function testarColisao(empilhadeira, obstaculo) {
+    // Pega as coordenadas reais dos retangulos na tela
+    const boneco = empilhadeira.getBoundingClientRect();
+    const cano = obstaculo.getBoundingClientRect();
+
+    // Folga de seguranca para nao morrer com cantos transparentes da imagem
+    const folgaX = 25;
+    const folgaY = 15;
+
+    // Checa se os retangulos estao se cruzando
+    return (
+        boneco.left + folgaX < cano.right - folgaX &&
+        boneco.right - folgaX > cano.left + folgaX &&
+        boneco.top + folgaY < cano.bottom &&
+        boneco.bottom > cano.top + folgaY
+    );
+}
+
+E ajustaremos a velocidade inicial no "startGame()":
+
+// Se a largura da tela for de celular (menor que 768px), comeca mais lento
+let velocidadeInicial = window.innerWidth <= 768 ? 3.0 : 2.0;
+root.style.setProperty('--velocidade', `${velocidadeInicial}s`);
+
+==========================================================================
+4. COMO TESTAR
+==========================================================================
+1. Abrir o site no celular ou simular pelo navegador (F12 -> modo celular).
+2. Tentar pular os obstaculos usando o botao vermelho "PULAR".
+3. Garantir que a colisao so aconteca quando a cancela realmente tocar a empilhadeira.
+4. Ajustar as folgas (folgaX e folgaY) se a colisao parecer muito dificil ou muito facil.

@@ -4,29 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título bacana que aparece na aba do navegador -->
     <title>T.J Toon Jumper</title>
-    <link rel="stylesheet" href="_css/style.css">
+    <!-- Importando o arquivo de estilo (CSS) que deixa o jogo bonitão -->
+    <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fonte estilo arcade/retrô do Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="_imagens/intro.png">
+    <!-- Ícone da aba do navegador (favicon) -->
+    <link rel="shortcut icon" href="imagens/intro.png">
 </head>
 
 <body>
 
+    <!-- Tela de abertura do jogo com o logo do SENAI -->
     <div id="passioneScreen">
-        <img id="startup-image" src="./_imagens/logos/lgo senai (1).png" alt="Tela de Abertura">
+        <img id="startup-image" src="./imagens/logos/lgo_senai_1.png" alt="Tela de Abertura">
+    </div>
 
-    </div>
+    <!-- Cenário de chão do jogo -->
     <div class="cenario">
-        <img src="_imagens/chao/chaomario.gif" id="img1" class="chao">
-        <!-- <img src="_imagens/chao/chaomario.png" id="img2" class="chao">
-        <img src="_imagens/chao/chaomario.png" id="img3" class="chao"> -->
+        <img src="imagens/chao/chaomario.gif" id="img1" class="chao">
     </div>
+
+    <!-- Tabuleiro/Área principal onde o jogo acontece -->
     <div class="game-board">
+        <!-- Tela inicial para digitação do Nickname -->
         <div class="tela-Inicial">
             <div class="senai">
-                <img src="_imagens/logos/lgo jogo.png" alt="" width="350px">
+                <img src="imagens/logos/lgo_jogo.png" alt="" width="350px">
             </div>
             <label for="nickname">Digite seu Nick:</label>
             <input type="text" id="nickname" placeholder="Seu Nick Aqui" maxlength="15">
@@ -35,13 +42,12 @@
             </div>
         </div>
 
-
-
-
-
+        <!-- Fundo dinâmico da fase -->
         <div class="fundos">
-            <img src="_imagens/fundos/fundomenina.png" class="fundo-gif">
+            <img src="imagens/fundos/fundomenina.png" class="fundo-gif">
         </div>
+
+        <!-- Tela de continuar/reiniciar ao perder vida -->
         <div class="tela-jogar-denovo">
             <h1>Voce deseja jogar outra vez?</h1>
             <div id="Continuar-Reniciar">
@@ -53,20 +59,26 @@
         </div>
 
         <div id="inferno-background"></div>
-        <img src="_imagens/inimigos/cancela.gif" class="pipe">
-        <img src="_imagens/bullet.png" width="100px" class="bullet">
-        <img src="_imagens/persona/empilhadeira.gif" class="mario" id="marioInicio">
-        <img src="_imagens/nuvems/mario.png" class="clouds">
-        <img src="_imagens/filter.gif" class="scanline">
+        <!-- Obstáculos: a cancela e o projétil bullet -->
+        <img src="imagens/inimigos/cancela.gif" class="pipe">
+        <img src="imagens/bullet.png" width="100px" class="bullet">
+        <!-- Personagem principal: empilhadeira -->
+        <img src="imagens/persona/empilhadeira.gif" class="mario" id="marioInicio">
+        <!-- Nuvens no céu -->
+        <img src="imagens/nuvems/mario.png" class="clouds">
+        <!-- Efeito visual retrô de scanline -->
+        <img src="imagens/filter.gif" class="scanline">
         <div id="star-layer"></div>
 
+        <!-- Botão estilizado de pular para telas mobile -->
         <button id="jump-button-mobile" class="arcade-button" style="display: none;">PULAR</button>
 
+        <!-- Placar e corações/vidas -->
         <div class="score-container">
             <div class="score">Score: 0</div>
-            <div id="lives-container"></div>
         </div>
 
+        <!-- Tela de Game Over final -->
         <div class="game-over-screen" style="display: none;">
             <h2>Game Over</h2>
             <p>Sua pontuação foi: <span id="final-score">0</span></p>
@@ -75,7 +87,7 @@
 
     </div>
 </body>
-<script src="_javascript/script.js" defer></script>
-<script src="_javascript/ranking.js" defer></script>
+<!-- Script com a lógica principal do jogo -->
+<script src="js/script.js" defer></script>
 
 </html>
